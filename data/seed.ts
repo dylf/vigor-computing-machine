@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import * as schema from "@/schema";
-import char from "./char.json";
+import char from "./briv.json";
 import type { ClassType, DamageType, DefenseType, Stats } from "@/types";
 
 async function insertCharacter() {

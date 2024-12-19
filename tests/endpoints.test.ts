@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach } from "bun:test";
 import { treaty } from "@elysiajs/eden";
 import { app } from "@/server";
-import briv from "@data/char.json";
+import briv from "@data/briv.json";
 import { resetDb } from "@data/seed";
 
 const api = treaty(app);

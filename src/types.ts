@@ -52,6 +52,8 @@ export const defenseType = t.Union([
   t.Literal("vulnerability"),
 ]);
 
+export type DefenseType = Static<typeof defenseType>;
+
 export const characterState = t.Object({
   name: t.String(),
   level: t.Number(),
