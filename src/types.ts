@@ -19,43 +19,74 @@ export const damageType = t.Union([
 
 export type DamageType = Static<typeof damageType>;
 
-// export type DamageType =
-//   | "bludgeoning"
-//   | "piercing"
-//   | "slashing"
-//   | "fire"
-//   | "cold"
-//   | "acid"
-//   | "thunder"
-//   | "lightning"
-//   | "poison"
-//   | "radiant"
-//   | "necrotic"
-//   | "psychic"
-//   | "force";
+export const classType = t.Union([
+  t.Literal("barbarian"),
+  t.Literal("bard"),
+  t.Literal("cleric"),
+  t.Literal("druid"),
+  t.Literal("fighter"),
+  t.Literal("monk"),
+  t.Literal("paladin"),
+  t.Literal("ranger"),
+  t.Literal("rogue"),
+  t.Literal("sorcerer"),
+  t.Literal("warlock"),
+  t.Literal("wizard"),
+]);
 
-// Could support more but just adding basic classes for the purpose
-// of this.
-export type ClassType =
-  | "barbarian"
-  | "bard"
-  | "cleric"
-  | "druid"
-  | "fighter"
-  | "monk"
-  | "paladin"
-  | "ranger"
-  | "rogue"
-  | "sorcerer"
-  | "warlock"
-  | "wizard";
+export type ClassType = Static<typeof classType>;
 
-export type Stats =
-  | "strength"
-  | "dexterity"
-  | "constitution"
-  | "intelligence"
-  | "wisdom"
-  | "charisma";
+export const stats = t.Union([
+  t.Literal("strength"),
+  t.Literal("dexterity"),
+  t.Literal("constitution"),
+  t.Literal("intelligence"),
+  t.Literal("wisdom"),
+  t.Literal("charisma"),
+]);
+export type Stats = Static<typeof stats>;
 
-export type DefenseType = "immunity" | "resistance" | "vulnerability";
+export const defenseType = t.Union([
+  t.Literal("immunity"),
+  t.Literal("resistance"),
+  t.Literal("vulnerability"),
+]);
+
+export const characterState = t.Object({
+  name: t.String(),
+  level: t.Number(),
+  hitPoints: t.Number(),
+  tempHitPoints: t.Number(),
+  maxHitPoints: t.Number(),
+  classes: t.Array(
+    t.Object({
+      name: classType,
+      hitDiceValue: t.Number(),
+      classLevel: t.Number(),
+    }),
+  ),
+  stats: t.Object({
+    strength: t.Number(),
+    dexterity: t.Number(),
+    constitution: t.Number(),
+    intelligence: t.Number(),
+    wisdom: t.Number(),
+    charisma: t.Number(),
+  }),
+  items: t.Array(
+    t.Object({
+      name: t.String(),
+      modifier: t.Object({
+        affectedObject: t.String(),
+        affectedValue: t.String(),
+        value: t.Number(),
+      }),
+    }),
+  ),
+  defenses: t.Array(
+    t.Object({
+      type: damageType,
+      defense: defenseType,
+    }),
+  ),
+});

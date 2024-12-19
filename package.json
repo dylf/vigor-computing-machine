@@ -19,6 +19,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@bogeychan/elysia-logger": "^0.1.6",
+    "@elysiajs/swagger": "^1.1.6",
     "@libsql/client": "^0.14.0",
     "drizzle-orm": "^0.38.2",
     "elysia": "^1.1.26"
